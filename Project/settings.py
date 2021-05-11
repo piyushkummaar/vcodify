@@ -124,3 +124,11 @@ MEDIA_URL = '/media/'
 STATICFILES_DIRS = [ BASE_DIR /'static']
 STATIC_ROOT = BASE_DIR / 'static_in_env'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# Email send
+EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'mapplecode2020@gmail.com'
+EMAIL_HOST_PASSWORD = 'Kindle@123'

@@ -4,23 +4,6 @@
 {% include 'includes/head.html' %}
 <body>
 
-  <!-- ======= Top Bar ======= -->
-  <section id="topbar" class="d-flex align-items-center">
-    <div class="container d-flex justify-content-center justify-content-md-between">
-      <div class="contact-info d-flex align-items-center">
-        <i class="bi bi-envelope-fill"></i><a href="mailto:contact@example.com">info@vcodify.com</a>
-        <i class="bi bi-phone-fill phone-icon"></i> +91 172 (456) 2881
-      </div>
-      <div class="social-links d-none d-md-block">
-        <a href="#" target="_blank" class="twitter"><i class="bx bi-twitter"></i></a>
-        <a href="#" target="_blank" class="facebook"><i class="bx bi-facebook"></i></a>
-        <a href="#" target="_blank" class="pinterest"><i class="bx bxl-pinterest"></i></a>
-		<a href="#" target="_blank" class="google-plus"><i class="bx bxl-google-plus"></i></a>
-        <a href="https://www.linkedin.com/company/vcodify-technologies" target="_blank" class="linkedin"><i class="bx bi-linkedin"></i></i></a>
-      </div>
-    </div>
-  </section>
-
   <!-- ======= Header ======= -->
   {% include 'includes/header.html' %}
   <!-- End Header -->
@@ -53,7 +36,7 @@
 
       <div class="row">
         <div class="col-lg-10 mt-5 mt-lg-0 d-flex align-items-stretch mx-auto">
-          <form action="/" method="post" role="form" class="php-email-form">
+          <form action="{% url 'apply' %}" method="post" role="form" class="php-email-form" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="row">
               <div class="form-group col-md-6">
@@ -68,17 +51,17 @@
             <div class="row">
                 <div class="form-group col-md-6">
                   <label for="name">Contact No.</label>
-                  <input type="number" name="contact" class="form-control" id="name" required>
+                  <input type="tel" maxlength="10" name="contact" class="form-control" id="name" required>
                 </div>
                 <div class="form-group col-md-6 mt-3 mt-md-0">
                   <label for="name">Date Of Birth</label>
-                  <input type="date" class="form-control" name="email" id="email" required>
+                  <input type="date" class="form-control" name="dob" id="email" required>
                 </div>
               </div>
              <div class="row">
                  <div class="col-md-6">
                     <label for="gender">Gender</label>
-                    <select class="form-select" aria-label="Default select example">
+                    <select name="gender" class="form-select" aria-label="Default select example" required>
                       <option selected>Select</option>
                       <option value="1">Male</option>
                       <option value="2">Female</option>
@@ -93,32 +76,33 @@
              </div>
              <div class="form-group mt-3">
                 <label for="inputAddress">Address</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                <input name="address" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
               </div>
               <div class="form-group">
                 <label for="inputAddress2">Address 2</label>
-                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                <input type="text" name="address2" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
               </div>
               <div class="row">
                 <div class="col-7">
                 <label for="inputAddress2">City</label>
-                <input type="text" class="form-control">
+                <input type="text" name="city" class="form-control">
                 </div>
                 <div class="col">
                 <label for="inputAddress2">State</label>
-                <input type="text" class="form-control">
+                <input type="text" name="state" class="form-control">
                 </div>
                 <div class="col">
                 <label for="inputAddress2">Zip</label>
-                <input type="text" class="form-control">
+                <input type="text" name="zip" class="form-control">
                 </div>
             </div>
+            {% if context %}
             <div class="my-3">
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your message has been sent. Thank you!</div>
+              <div class="sent-message">Your request has been submitted. Thank you!</div>
             </div>
-            <div class="text-center"><button type="submit">Submit</button></div>
+            {% endif %}
+
+            <div class="text-center mt-2"><button type="submit">Submit</button></div>
           </form>
         </div>
 
