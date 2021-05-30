@@ -49,37 +49,49 @@
     });
   });
 
-  function php_email_form_submit(thisForm, action, formData) {
-    fetch(action, {
-      method: 'POST',
-      body: formData,
-      headers: {'X-Requested-With': 'XMLHttpRequest'}
-    })
-    .then(response => {
-      if( response.ok ) {
-        return response.text()
-      } else {
-        throw new Error(`${response.status} ${response.statusText} ${response.url}`); 
-      }
-    })
-    .then(data => {
-      thisForm.querySelector('.loading').classList.remove('d-block');
-      if (data.trim() == 'OK') {
-        thisForm.querySelector('.sent-message').classList.add('d-block');
-        thisForm.reset(); 
-      } else {
-        throw new Error(data ? data : 'Form submission failed and no error message returned from: ' + action); 
-      }
-    })
-    .catch((error) => {
-      displayError(thisForm, error);
-    });
-  }
+  function php_email_form_submit(thisForm, action, formData) 
+  $.ajax({
+    url: '127.0.0.1:8000/hello',
+    type: 'get', // This is the default though, you don't actually need to always mention it
+    success: function(data) {
+        alert(data);
+    },
+    failure: function(data) { 
+        alert('Got an error dude');
+    }
+}); 
+  // {
+  //   fetch(action, {
+  //     method: 'POST',
+  //     body: formData,
+  //     headers: {'X-Requested-With': 'XMLHttpRequest'}
+  //   })
+  //   .then(response => {
+  //     if( response.ok ) {
+  //       return response.text()
+  //     // } else {
+  //     //   throw new Error(`${response.status} ${response.statusText} ${response.url}`); 
+  //     }
+  //   })
+  //   .then(data => {
+  //     thisForm.querySelector('.loading').classList.remove('d-block');
+  //     if (data.trim() == 'OK') {
+  //       thisForm.querySelector('.sent-message').classList.add('d-block');
+  //       thisForm.reset(); 
+  //     } 
+  //     // else {
+  //       // throw new Error(data ? data : 'Form submission failed and no error message returned from: ' + action); 
+  //     // }
+  //   })
+  //   // .catch((error) => {
+    //   displayError(thisForm, error);
+    // });
+  // }
 
-  function displayError(thisForm, error) {
-    thisForm.querySelector('.loading').classList.remove('d-block');
-    thisForm.querySelector('.error-message').innerHTML = error;
-    thisForm.querySelector('.error-message').classList.add('d-block');
-  }
+  // function displayError(thisForm, error) {
+  //   thisForm.querySelector('.loading').classList.remove('d-block');
+  //   thisForm.querySelector('.error-message').innerHTML = error;
+  //   thisForm.querySelector('.error-message').classList.add('d-block');
+  // }
 
 })();

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'includes/head.html' %}
+<body>
+  <style>
+    video {
+      width: 100%;
+      height: auto;
+    }
+    </style>
+  <!-- ======= Header ======= -->
+  {% include 'includes/header.html' %}
+  <!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Portfolio Details</h2>
+          <ol>
+            <li><a href="{% url 'portfolio' %}">Home</a></li>
+            <li>Portfolio Details</li>
+          </ol>
+        </div>
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+      <div class="container">
+
+        <div class="row gy-4">
+          <div class="col-lg-8">
+            <div class="swiper-slide">
+            {% if pfdata.get_image_video == 'mp4' %}
+            <source height="350px"  type="video/mp4">
+                <video poster="" controls>
+                  <source src="{{pfdata.imageorvideo.url}}" type="video/mp4">
+               </video>
+          {% else %}
+            <img src="{{ pfdata.imageorvideo.url }}" height="350px" alt="img..">
+          {% endif %}
+        </div>
+        </div>
+          <div class="col-lg-4">
+            <div class="portfolio-info">
+              <h3>{{ pfdata.title }}</h3>
+              <ul>
+                <li><strong>Technology used : </strong>{{ pfdata.technology }}</li>
+                <!-- <li><strong>Client</strong>: ASU Company</li>
+                <li><strong>Project date</strong>: 01 March, 2020</li> -->
+                <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
+              </ul>
+            </div>
+            <div class="portfolio-description">
+              <h2>About the project:</h2>
+              <p>{{ pfdata.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  {% include 'includes/footer.html' %}
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+{% include 'includes/scripts.html' %}
+
+</body>
+
+</html>

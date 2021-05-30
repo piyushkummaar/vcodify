@@ -3,6 +3,7 @@ from Project.settings import EMAIL_HOST_USER
 from django.views import View
 from django.core.mail import send_mail
 from core.models import *
+from django.views.generic import ListView,DetailView
 
 class Home(View):
     def get(self, request):
@@ -40,3 +41,17 @@ class Apply(View):
             # application = Career(name=name,email=email,subject=subject,message=message)
             # application.save()
             return render(request,'pages/apply.html',{"context":"message"})
+
+
+class PortfolioView(ListView):
+    model = Portfolio
+    template_name = 'pages/portfolio.html'  
+    context_object_name = 'pfdata'  
+    paginate_by = 6
+    queryset = Portfolio.objects.all().order_by('uploaded_at')
+
+class PortfolioDetailView(DetailView):
+    model = Portfolio
+    template_name = 'pages/portfolio_details.html'
+    context_object_name = 'pfdata' 
+     

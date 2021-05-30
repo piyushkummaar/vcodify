@@ -127,8 +127,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # Email send
 EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'us2.smtp.mailhostbox.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'mapplecode2020@gmail.com'
-EMAIL_HOST_PASSWORD = 'Kindle@123'
+EMAIL_HOST_USER = 'info@vcodifytechnologies.com'
+EMAIL_HOST_PASSWORD = 'fuojXTWlw0'

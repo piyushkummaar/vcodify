@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'includes/head.html' %}
+<body>
+
+  <!-- ======= Header ======= -->
+  {% include 'includes/header.html' %}
+  <!-- End Header -->
+
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div id="" data-bs-interval="" class="carousel slide carousel" data-bs-ride="carousel">
+        <div class="carousel-item active" style="background-image: url(static/img/slide/slide-1.jpg)">
+          <div class="carousel-container">
+            <div class="container">
+              <h2 class="animate__animated animate__fadeInDown">PORTFOLIO</h2>
+              <p class="animate__animated animate__fadeInDown">Checkout Our beautiful portfolio</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>Portfolio</h2>
+        <p>Here is Our beautiful portfolio.
+    </p>
+      </div>
+      <div class="row">
+          {% for project in pfdata%}
+          <div class="col-md-6">
+            <div class="card mb-2 shadow">
+                {% if project.get_image_video == 'mp4' %}
+                <source  type="video/mp4" height="180">
+                <video poster="" controls>
+                  <source src="{{project.imageorvideo.url}}" type="video/mp4">
+               </video>
+               {% else%}
+               <img src="{{project.imageorvideo.url}}" height="305" alt=""> 
+               {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ project.title }}</h5>
+                    <p class="card-text">{{ project.snippet  }}</p>
+                    <a href="{% url 'project_detail' project.pk %}"
+                       class="btn btn-outline-primary">
+                        Read More 
+                    </a>
+                </div>
+            </div>
+        </div>
+          {% endfor %}
+      </div>
+    </div>
+  </section>
+  </main><!-- End #main -->
+
+
+<nav aria-label="Page navigation example">
+{% if is_paginated %}
+<ul class="pagination justify-content-center">
+{% if page_obj.has_previous %}
+    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;Previous</a></li>
+  {% else %}
+    <li class="page-item"><a class="page-link">&laquo;</a></li>
+  {% endif %}
+  {% for i in paginator.page_range %}
+    {% if page_obj.number == i %}
+      <li class="page-item active"><a class="page-link">{{ i }}</a></li>
+    {% else %}
+      <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+    {% endif %}
+  {% endfor %}
+  {% if page_obj.has_next %}
+    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next&raquo;</a></li>
+  {% else %}
+    <li class="page-item"><a class="page-link">&raquo;</a></li>
+  {% endif %}
+</ul>
+{% endif %}
+</nav>
+
+  <!-- ======= Footer ======= -->
+  {% include 'includes/footer.html' %}
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+{% include 'includes/scripts.html' %}
+
+</body>
+
+</html>
