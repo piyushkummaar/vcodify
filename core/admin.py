@@ -34,3 +34,6 @@ class PortfolioAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Portfolio,PortfolioAdmin)
+admin.site.site_header = "Vcodify Admin Dashboard"
+admin.site.site_title = "Vcodify Admin Dashboard"
+admin.site.index_title = "Welcome to Vcodify Admin Dashboard"
