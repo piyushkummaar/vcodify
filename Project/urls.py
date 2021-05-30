@@ -6,7 +6,7 @@ from core.views import *
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('dashboard/', admin.site.urls),
     path('', Home.as_view(), name='home'),
     path('careers', Apply.as_view(), name='apply'),
     path('portfolio', PortfolioView.as_view(), name='portfolio'),
