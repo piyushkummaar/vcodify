@@ -9,7 +9,7 @@ class Home(View):
     def get(self, request):
         return render(request,'index.html',{})
     def post(self,request):
-        if request.is_ajax and request.method == "POST":
+        if request.method == "POST":
             name = request.POST.get('name', '')
             email = request.POST.get('email', '')
             subject = request.POST.get('subject', '')
@@ -26,20 +26,13 @@ class Apply(View):
     def post(self,request):
         if request.method == "POST":
             if request.FILES :
-                file = request.FILES['file']
+                document = request.FILES['file']
             name = request.POST.get('name', '')
             email = request.POST.get('email', '')
             contact = request.POST.get('contact', '')
-            gender = request.POST["gender"]
-            dob = request.POST['dob']
-            address = request.POST['address']
-            address2 = request.POST['address2']
-            state = request.POST['state']
-            city = request.POST['city']
-            zipcode = request.POST['zip']
             send_mail("Vcodify Technologies",'''Thank's for submitting the form we appreciate you're decision to connect with us.''', EMAIL_HOST_USER, [email], fail_silently = False)
-            # application = Career(name=name,email=email,subject=subject,message=message)
-            # application.save()
+            application = Career(name=name,email=email,contact=contact,document=document)
+            application.save()
             return render(request,'pages/apply.html',{"context":"message"})
 
 

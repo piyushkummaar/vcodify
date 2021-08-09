@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'Project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME':  str(BASE_DIR / 'db.sqlite3'),
     }
 }
 
@@ -141,4 +141,4 @@ EMAIL_HOST = 'us2.smtp.mailhostbox.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'info@vcodifytechnologies.com'
-EMAIL_HOST_PASSWORD = 'fuojXTWlw0'
+EMAIL_HOST_PASSWORD = '(kP#zTV1'

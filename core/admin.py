@@ -1,5 +1,5 @@
 from django.contrib import admin
-from core.models import Contact,Portfolio
+from core.models import Career, Contact,Portfolio
 from django.utils.html import format_html
 from django.utils.html import escape
 
@@ -34,6 +34,7 @@ class PortfolioAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Portfolio,PortfolioAdmin)
+admin.site.register(Career)
 admin.site.site_header = "Vcodify Admin Dashboard"
 admin.site.site_title = "Vcodify Admin Dashboard"
 admin.site.index_title = "Welcome to Vcodify Admin Dashboard"

@@ -21,6 +21,24 @@ class Contact(models.Model):
         managed = True
         db_table = "tbl_contact"
 
+class Career(models.Model):
+    '''
+    This is the Career model that for storing and getting data form the tbl_career in db.
+    '''
+    name = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
+    contact = models.CharField(max_length=12)
+    document = models.FileField(upload_to='documents/')
+    
+    def __str__(self):
+        return f"{self.name} {self.email}"
+
+    class Meta:
+        verbose_name = "Career"
+        verbose_name_plural = "Career"
+        managed = True
+        db_table = "tbl_career"
+
 class Portfolio(models.Model):
     '''
     This is the Portfolio model that for storing and getting data form the tbl_portfolio in db.
